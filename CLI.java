@@ -2,23 +2,22 @@ import java.util.Scanner;
 
 public class CLI
 {
-    private Club c;
+    private Club club;
     private Scanner sc;
     
     public CLI()
     {
-        this.c = new Club();
+        this.club = new Club();
         this.sc = new Scanner(System.in);
     }
     
     public void mainMenu()
     {
-        printMainMenu();
         boolean exit = false;
         do
         {
+            printMainMenu();
             char option = sc.next().charAt(0);
-            //System.out.println(option);
             switch(option)
             {
                 case '1':
@@ -31,7 +30,7 @@ public class CLI
                     exit = true;
                     break;
                 default:
-                    printMainMenu();
+                    break;
             }
         } while(!exit);
     }
@@ -46,8 +45,27 @@ public class CLI
     
     private void memberMenu()
     {
-        printMemberMenu();
-        
+        boolean exit = false;
+        do
+        {
+            System.out.println();
+            printMemberMenu();
+            char option = sc.next().charAt(0);
+            switch(option)
+            {
+                case '1':
+                    System.out.println(this.club.getMembers());
+                    break;
+                case '2':
+                    System.out.println("would launch sorting menu");
+                    break;
+                case '0':
+                    exit = true;
+                    break;
+                default:
+                    break;
+            }
+        } while(!exit);
     }
     
     private void printMemberMenu()
@@ -55,13 +73,7 @@ public class CLI
         System.out.println("Member Menu");
         System.out.println("1. View Members");
         System.out.println("2. Sort Members");
-        boolean exit = false;
-        do
-        {
-            char option = sc.next().charAt(0);
-            
-            switch(option)
-        } while(!exit);
+        System.out.println("0. Return to Main Menu");
     }
     
     private void treasuryMenu()
